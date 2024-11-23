@@ -1,0 +1,15 @@
+Output of performancecount1:
+time paralel =0.195539 
+time serial=0.019484 
+
+Output of performancecount2:
+time paralel=0.011052 
+time serial=0.019520 
+
+Output of performancecount3:
+time paralel=0.011645 
+time serial=0.019743 
+
+Output of performancecount4:
+time paralel=0.005701 
+time serial=0.020019 

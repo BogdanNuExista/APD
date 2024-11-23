@@ -1,0 +1,71 @@
+Testing matrix multiplication algorithms
+Number of threads available: 8
+
+Matrix size N=500
+=================
+    Serial IJK (N=500): Time=0.376 seconds, Valid=yes
+    Serial IKJ (N=500): Time=0.334 seconds, Valid=yes
+    Serial JIK (N=500): Time=0.369 seconds, Valid=yes
+    Serial JKI (N=500): Time=0.498 seconds, Valid=yes
+    Serial KIJ (N=500): Time=0.334 seconds, Valid=yes
+    Serial KJI (N=500): Time=0.495 seconds, Valid=yes
+    Parallel IJK (N=500, threads=8): Time=0.094 seconds, Valid=yes
+    Parallel IKJ (N=500, threads=8): Time=0.084 seconds, Valid=yes
+    Parallel JIK (N=500, threads=8): Time=0.092 seconds, Valid=yes
+    Parallel JKI (N=500, threads=8): Time=0.257 seconds, Valid=yes
+    Parallel KIJ (N=500, threads=8): Time=0.186 seconds, Valid=yes
+    Parallel KJI (N=500, threads=8): Time=0.470 seconds, Valid=yes
+    Blocked Serial (bs=16): Time=0.320 seconds
+    Blocked Parallel (bs=16): Time=0.093 seconds
+    Blocked Serial (bs=32): Time=0.307 seconds
+    Blocked Parallel (bs=32): Time=0.092 seconds
+    Blocked Serial (bs=64): Time=0.315 seconds
+    Blocked Parallel (bs=64): Time=0.090 seconds
+    Blocked Serial (bs=128): Time=0.332 seconds
+    Blocked Parallel (bs=128): Time=0.092 seconds
+
+Matrix size N=1000
+=================
+    Serial IJK (N=1000): Time=4.557 seconds, Valid=yes
+    Serial IKJ (N=1000): Time=2.940 seconds, Valid=yes
+    Serial JIK (N=1000): Time=3.279 seconds, Valid=yes
+    Serial JKI (N=1000): Time=12.121 seconds, Valid=yes
+    Serial KIJ (N=1000): Time=2.818 seconds, Valid=yes
+    Serial KJI (N=1000): Time=11.795 seconds, Valid=yes
+    Parallel IJK (N=1000, threads=8): Time=1.575 seconds, Valid=yes
+    Parallel IKJ (N=1000, threads=8): Time=0.734 seconds, Valid=yes
+    Parallel JIK (N=1000, threads=8): Time=1.472 seconds, Valid=yes
+    Parallel JKI (N=1000, threads=8): Time=2.975 seconds, Valid=yes
+    Parallel KIJ (N=1000, threads=8): Time=1.495 seconds, Valid=yes
+    Parallel KJI (N=1000, threads=8): Time=4.090 seconds, Valid=yes
+    Blocked Serial (bs=16): Time=2.643 seconds
+    Blocked Parallel (bs=16): Time=0.749 seconds
+    Blocked Serial (bs=32): Time=2.494 seconds
+    Blocked Parallel (bs=32): Time=0.693 seconds
+    Blocked Serial (bs=64): Time=2.546 seconds
+    Blocked Parallel (bs=64): Time=0.705 seconds
+    Blocked Serial (bs=128): Time=2.636 seconds
+    Blocked Parallel (bs=128): Time=0.692 seconds
+
+Matrix size N=1500
+=================
+    Serial IJK (N=1500): Time=22.254 seconds, Valid=yes
+    Serial IKJ (N=1500): Time=9.585 seconds, Valid=yes
+    Serial JIK (N=1500): Time=19.812 seconds, Valid=yes
+    Serial JKI (N=1500): Time=46.580 seconds, Valid=yes
+    Serial KIJ (N=1500): Time=9.729 seconds, Valid=yes
+    Serial KJI (N=1500): Time=28.607 seconds, Valid=yes
+    Parallel IJK (N=1500, threads=8): Time=2.863 seconds, Valid=yes
+    Parallel IKJ (N=1500, threads=8): Time=2.266 seconds, Valid=yes
+    Parallel JIK (N=1500, threads=8): Time=2.715 seconds, Valid=yes
+    Parallel JKI (N=1500, threads=8): Time=4.377 seconds, Valid=yes
+    Parallel KIJ (N=1500, threads=8): Time=5.321 seconds, Valid=yes
+    Parallel KJI (N=1500, threads=8): Time=10.716 seconds, Valid=yes
+    Blocked Serial (bs=16): Time=8.689 seconds
+    Blocked Parallel (bs=16): Time=2.406 seconds
+    Blocked Serial (bs=32): Time=8.211 seconds
+    Blocked Parallel (bs=32): Time=2.285 seconds
+    Blocked Serial (bs=64): Time=8.348 seconds
+    Blocked Parallel (bs=64): Time=2.365 seconds
+    Blocked Serial (bs=128): Time=8.535 seconds
+    Blocked Parallel (bs=128): Time=2.272 seconds

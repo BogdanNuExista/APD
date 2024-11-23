@@ -1,0 +1,120 @@
+Matrix size N=1000
+=================
+Serial IJK (N=1000): Time=4.319 seconds, Valid=yes
+Serial IKJ (N=1000): Time=2.827 seconds, Valid=yes
+Serial JIK (N=1000): Time=3.346 seconds, Valid=yes
+Serial JKI (N=1000): Time=12.441 seconds, Valid=yes
+Serial KIJ (N=1000): Time=2.903 seconds, Valid=yes
+Serial KJI (N=1000): Time=11.999 seconds, Valid=yes
+Parallel IJK (N=1000, threads=8): Time=1.536 seconds, Valid=yes
+Parallel IKJ (N=1000, threads=8): Time=0.718 seconds, Valid=yes
+Parallel JIK (N=1000, threads=8): Time=1.517 seconds, Valid=yes
+Parallel JKI (N=1000, threads=8): Time=3.057 seconds, Valid=yes
+Parallel KIJ (N=1000, threads=8): Time=1.680 seconds, Valid=yes
+Parallel KJI (N=1000, threads=8): Time=3.988 seconds, Valid=yes
+Blocked Serial (bs=16): Time=2.655 seconds
+Blocked Parallel (bs=16): Time=0.790 seconds
+Blocked Serial (bs=32): Time=2.506 seconds
+Blocked Parallel (bs=32): Time=0.723 seconds
+Blocked Serial (bs=64): Time=2.578 seconds
+Blocked Parallel (bs=64): Time=0.771 seconds
+Blocked Serial (bs=128): Time=2.658 seconds
+Blocked Parallel (bs=128): Time=0.673 seconds
+
+Analysis of Matrix Multiplication Algorithm Implementations for N=1000:
+
+1. Analysis of Serial Implementations (ijk permutations)
+-> Performance Rankings (from fastest to slowest):
+    IKJ: 2.827s
+    KIJ: 2.903s
+    JIK: 3.346s
+    IJK: 4.319s
+    KJI: 11.999s
+    JKI: 12.441s
+
+-> Key Observations:
+    -> Cache Efficiency Impact:
+        IKJ and KIJ variants significantly outperform others (2.8-2.9s)
+        They are roughly 4x faster than the slowest variants (JKI, KJI)
+        This superior performance is due to better cache utilization through
+    -> Memory Access Patterns:
+        The worst performers (JKI and KJI) suffer from poor spatial locality
+        These variants access matrix elements in a non-sequential pattern, causing frequent cache misses
+        The difference between best and worst is approximately 4.4x (2.827s vs 12.441s)
+    -> Classical Algorithm (IJK):
+        Performs moderately well but not optimally (4.319s)
+        About 1.5x slower than the best variant (IKJ)
+        Shows why optimization of loop ordering is important
+
+2. Analysis of Parallel Implementations (8 threads, ijk permutations)
+-> Performance Rankings (from fastest to slowest):
+    IKJ: 0.718s
+    JIK: 1.517s
+    IJK: 1.536s
+    KIJ: 1.680s
+    JKI: 3.057s
+    KJI: 3.988s
+
+-> Key Observations:
+    -> Speedup Analysis:
+        Best parallel implementation (IKJ): 3.94x speedup over its serial version
+        Classical algorithm (IJK): 2.81x speedup
+        Worst case (KJI): 3.01x speedup
+
+    -> Scaling Efficiency:
+        With 8 threads, none achieved perfect 8x speedup
+        Best efficiency: IKJ at 49.2% (3.94/8)
+        Suggests memory bandwidth limitations are a significant factor
+
+    -> Pattern Consistency:
+        IKJ remains the best performer in both serial and parallel versions
+        JKI and KJI remain the worst performers
+        Cache effects continue to dominate even in parallel execution
+
+3. Blocked Algorithm Analysis
+-> Performance Across Block Sizes:
+    Block Size | Serial Time | Parallel Time | Speedup
+    ----------------------------------------------
+    16         | 2.655s     | 0.790s        | 3.36x
+    32         | 2.506s     | 0.723s        | 3.47x
+    64         | 2.578s     | 0.771s        | 3.34x
+    128        | 2.658s     | 0.673s        | 3.95x
+
+-> Key Observations:
+
+    -> Block Size Impact:
+        - Best serial performance: 32 blocks (2.506s)
+        - Best parallel performance: 128 blocks (0.673s)
+        - Performance differences between block sizes are relatively small (≈5-15%)
+
+    -> Comparison with Non-blocked Versions:
+        - Blocked algorithm outperforms classical IJK (2.506s vs 4.319s)
+        - Parallel blocked version competitive with best parallel version (0.673s vs 0.718s)
+        - Shows effectiveness of blocking for cache utilization
+
+    -> Cache Considerations:
+        - 32-64 block sizes work well with typical L1 cache sizes
+        - Larger blocks (128) work better in parallel due to reduced synchronization overhead
+        - A good block size for my compoter would be 128, as it achieves the best performance
+
+4. Overall Conclusions and Recommendations
+
+    -> Best Algorithms:
+        - For serial execution: Use IKJ variant
+        - For parallel execution: Use either IKJ variant or blocked algorithm with 128 block size
+        - Both achieve similar performance (≈0.7s)
+
+    -> Performance Optimization Guidelines:
+        - Prioritize cache-friendly memory access patterns
+        - Consider using blocked algorithm for large matrices
+        - Choose block sizes based on target architecture's cache size
+
+    -> Scalability Considerations:
+        - Memory bandwidth is the main limiting factor for parallel speedup
+        - Consider NUMA-aware implementations for larger systems
+        - Further optimization might require architecture-specific tuning
+
+    -> Future Optimization Possibilities:
+        - Explore vector instructions (SIMD)
+        - Implement hybrid approaches combining blocking with optimal loop ordering
+        - Consider autotuning block sizes based on matrix and cache sizes

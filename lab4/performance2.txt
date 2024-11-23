@@ -1,0 +1,84 @@
+Performance for m = 8000, n = 8000
+Enter m and n
+Total number of elements m*n= 64000000 
+Generate the matrix
+Generate the vector
+Serial: time =0.183024 
+Parallel: time =0.094670 
+Number of parallel threads was 2
+Measured Speedup=1.933290
+ 
+Enter m and n
+Total number of elements m*n= 64000000 
+Generate the matrix
+Generate the vector
+Serial: time =0.178057 
+Parallel: time =0.057349 
+Number of parallel threads was 4
+Measured Speedup=3.104829
+ 
+Enter m and n
+Total number of elements m*n= 64000000 
+Generate the matrix
+Generate the vector
+Serial: time =0.182294 
+Parallel: time =0.039720 
+Number of parallel threads was 8
+Measured Speedup=4.589498
+ 
+Performance for m = 8, n = 8000000
+Enter m and n
+Total number of elements m*n= 64000000 
+Generate the matrix
+Generate the vector
+Serial: time =0.179960 
+Parallel: time =0.082187 
+Number of parallel threads was 2
+Measured Speedup=2.189647
+ 
+Enter m and n
+Total number of elements m*n= 64000000 
+Generate the matrix
+Generate the vector
+Serial: time =0.179572 
+Parallel: time =0.066027 
+Number of parallel threads was 4
+Measured Speedup=2.719658
+ 
+Enter m and n
+Total number of elements m*n= 64000000 
+Generate the matrix
+Generate the vector
+Serial: time =0.179636 
+Parallel: time =0.038434 
+Number of parallel threads was 8
+Measured Speedup=4.673909
+ 
+Performance for m = 8000000, n = 8
+Enter m and n
+Total number of elements m*n= 64000000 
+Generate the matrix
+Generate the vector
+Serial: time =0.202454 
+Parallel: time =0.121610 
+Number of parallel threads was 2
+Measured Speedup=1.664780
+ 
+Enter m and n
+Total number of elements m*n= 64000000 
+Generate the matrix
+Generate the vector
+Serial: time =0.202243 
+Parallel: time =0.059707 
+Number of parallel threads was 4
+Measured Speedup=3.387227
+ 
+Enter m and n
+Total number of elements m*n= 64000000 
+Generate the matrix
+Generate the vector
+Serial: time =0.195726 
+Parallel: time =0.046140 
+Number of parallel threads was 8
+Measured Speedup=4.242037
+ 
