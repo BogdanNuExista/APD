@@ -31,6 +31,7 @@
 
 /* We'll be using MPI routines, definitions, etc. */
 #include <mpi.h>
+#include <math.h>
 
 /* Get the input values */
 void Get_input(int my_rank, int comm_sz, double* a_p, double* b_p,
@@ -171,6 +172,7 @@ double Trap(
  * Purpose:     Compute value of function to be integrated
  * Input args:  x
  */
+// I'm gonna test for a different function
 double f(double x) {
-   return x*x;
+    return x*x; // x^3/3 = 1/3 intre 0 si 1
 } /* f */
