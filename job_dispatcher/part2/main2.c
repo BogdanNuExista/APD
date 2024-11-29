@@ -479,6 +479,7 @@ int parse_command(const char *line, Command *cmd) {
         strcat(cmd->params, param1);
         strcat(cmd->params, " ");
         strcat(cmd->params, param2);
+        printf("CMDDDDDDDDDDDDDDDDDDDDDDD PARAMS %s\n", cmd->params);
     } else if(strcmp(cmd_type, "MATRIXMULT") == 0) {
         cmd->type = CMD_MATRIXMULT;
         char param1[32], param2[32];
@@ -488,6 +489,7 @@ int parse_command(const char *line, Command *cmd) {
         strcat(cmd->params, param1);
         strcat(cmd->params, " ");
         strcat(cmd->params, param2);
+        printf("CMDDDDDDDDDDDDDDDDDDDDDDD PARAMS %s\n", cmd->params);
     } else {
         return 0;
     }
@@ -511,6 +513,8 @@ void run_worker(int rank) {
         }
 
         memset(result, 0, MAX_RESULT_LEN);
+
+        printf("CMD TYPE %d and PARAMS %s\n", cmd.type, cmd.params);  
         
         switch (cmd.type) {
             case CMD_PRIMES:

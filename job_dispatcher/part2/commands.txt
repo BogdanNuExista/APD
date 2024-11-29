@@ -13,5 +13,6 @@ WAIT 3
 CLI3 ANAGRAMS testing
 CLI4 PRIMES 5000
 CLI5 ANAGRAMS simple
-CLI0 MATRIXADD 10 matrix1.txt matrix2.txt
 CLI1 MATRIXMULT 3 matrix3.txt matrix4.txt
+WAIT 2
+CLI0 MATRIXADD 101 matrix1.txt matrix2.txt
