@@ -154,9 +154,9 @@ void multiply_kji(int n) {
 
 //////////////////// Parallel implementations
 void parallel_multiply_ijk(int n, int nthreads) {
-    #pragma omp parallel num_threads(nthreads)
+    #pragma omp parallel num_threads(nthreads) 
     {
-        #pragma omp for collapse(2)
+        #pragma omp for collapse(2) 
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
                 double sum = 0.0;
@@ -168,6 +168,12 @@ void parallel_multiply_ijk(int n, int nthreads) {
         }
     }
 }
+
+/*
+
+#pragma omp parallel num_threads(nthreads), default(none), private(i, j, k), shared(a, b, c2, chunk)
+
+*/
 
 void parallel_multiply_ikj(int n, int nthreads) {
     // Initialize result matrix to zero
@@ -382,7 +388,7 @@ void test_parallel_algorithm(const char* name, parallel_mult_func func,
 }
 
 int main() {
-    int sizes[] = {500, 1000, 1500};
+    int sizes[] = {2500};
     int n_sizes = sizeof(sizes) / sizeof(sizes[0]);
     int nthreads = omp_get_max_threads(); // get the number of threads available aka 8
     
