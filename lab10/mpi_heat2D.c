@@ -51,172 +51,83 @@ void update(int start, int end, int ny, float *u1, float *u2);
 void inidat(int nx, int ny, float *u);
 void prtdat(int nx, int ny, float *u1, char *fnam);
 
-int main (int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-    float *u[2];  // 2D grid for current and next time steps
-    int taskid, numtasks, numworkers;
-    int rows_per_process, extra_rows;
-    int my_offset, my_rows;
-    int left_neighbor, right_neighbor;
-    int start, end, iz;
-    
-    // Arrays for scatter/gather
-    int *sendcounts, *displs;
-    
-    MPI_Request send_request[4];  // For non-blocking communication
-    MPI_Status status[4];
+    float  u[2][NXPROB][NYPROB];        /* array for grid */
+    int    taskid, numtasks, rows, offset;
+    int    iz, it;
+    MPI_Status status;
 
-    // MPI Initialization
+    // Initialize MPI
     MPI_Init(&argc, &argv);
     MPI_Comm_size(MPI_COMM_WORLD, &numtasks);
     MPI_Comm_rank(MPI_COMM_WORLD, &taskid);
-    
-    numworkers = numtasks;  // Now including master
-    
-    // Allocate memory for send counts and displacements
-    sendcounts = malloc(numtasks * sizeof(int));
-    displs = malloc(numtasks * sizeof(int));
-    
-    // Calculate work distribution
-    rows_per_process = NXPROB / numworkers;
-    extra_rows = NXPROB % numworkers;
-    
-    // Prepare send counts and displacements
-    int total_offset = 0;
-    for (int i = 0; i < numtasks; i++) {
-        if (i < extra_rows) {
-            sendcounts[i] = (rows_per_process + 1) * NYPROB;
-            displs[i] = total_offset;
-            total_offset += sendcounts[i];
-        } else {
-            sendcounts[i] = rows_per_process * NYPROB;
-            displs[i] = total_offset;
-            total_offset += sendcounts[i];
-        }
-    }
-    
-    // Determine local chunk size and offset for this process
-    if (taskid < extra_rows) {
-        my_rows = rows_per_process + 1;
-        my_offset = taskid * my_rows;
-    } else {
-        my_rows = rows_per_process;
-        my_offset = taskid * rows_per_process + extra_rows;
-    }
-    
-    // Allocate memory for grid
-    u[0] = malloc(NXPROB * NYPROB * sizeof(float));
-    u[1] = malloc(NXPROB * NYPROB * sizeof(float));
-    
-    // Determine neighbors
-    left_neighbor = (taskid > 0) ? taskid - 1 : MPI_PROC_NULL;
-    right_neighbor = (taskid < numworkers - 1) ? taskid + 1 : MPI_PROC_NULL;
-    
-    // Master initializes the entire grid and scatters it
+
+    // Calculate rows per process
+    rows = NXPROB / numtasks;
+    offset = taskid * rows;
+
+    // Initialize grid and print initial state only on master process
     if (taskid == MASTER) {
-        // Initialize grid
         printf("Grid size: X= %d  Y= %d  Time steps= %d\n", NXPROB, NYPROB, STEPS);
-        printf("Performing heat diffusion with %d processes\n", numtasks);
-        
-        inidat(NXPROB, NYPROB, u[0]);
-        
-        // Write initial data
-        prtdat(NXPROB, NYPROB, u[0], "initial.dat");
+        printf("Initializing grid and initial.dat file...\n");
+        inidat(NXPROB, NYPROB, &u[0][0][0]);
+        prtdat(NXPROB, NYPROB, &u[0][0][0], "initial.dat");
     }
-    
+
     // Scatter initial data to all processes
-    MPI_Scatterv(
-        u[0],           // sendbuf
-        sendcounts,     // sendcounts array
-        displs,         // displacements array
-        MPI_FLOAT, 
-        u[0] + my_offset * NYPROB, // recvbuf
-        my_rows * NYPROB, 
-        MPI_FLOAT, 
-        MASTER, 
-        MPI_COMM_WORLD
-    );
-    
-    // Determine computation range
-    start = (my_offset == 0) ? 1 : 0;
-    end = (my_offset + my_rows == NXPROB) ? my_rows - 2 : my_rows - 1;
-    
-    // Simulation steps
+    MPI_Scatter(&u[0][0][0], rows*NYPROB, MPI_FLOAT, 
+                &u[0][offset][0], rows*NYPROB, MPI_FLOAT, 
+                MASTER, MPI_COMM_WORLD);
+
+    // Determine local start and end for each process
+    int start = (taskid == 0) ? 1 : offset;
+    int end = (taskid == numtasks-1) ? NXPROB-2 : offset+rows-1;
+
+    // Compute local rows
     iz = 0;
-    for (int it = 1; it <= STEPS; it++) {
-        // Overlap communication and computation
-        
-        // Non-blocking send/receive of left boundary
-        if (left_neighbor != MPI_PROC_NULL) {
-            MPI_Isend(u[iz] + my_offset * NYPROB, NYPROB, MPI_FLOAT, 
-                      left_neighbor, 0, MPI_COMM_WORLD, &send_request[0]);
-            MPI_Irecv(u[iz] + (my_offset - 1) * NYPROB, NYPROB, MPI_FLOAT, 
-                      left_neighbor, 0, MPI_COMM_WORLD, &send_request[1]);
+    for (it = 1; it <= STEPS; it++)
+    {
+        // Non-blocking communication
+        MPI_Request left_recv_req, left_send_req;
+        MPI_Request right_recv_req, right_send_req;
+
+        // Left neighbor communication
+        if (taskid > 0) {
+            MPI_Irecv(&u[iz][offset-1][0], NYPROB, MPI_FLOAT, taskid-1, 0, MPI_COMM_WORLD, &left_recv_req);
+            MPI_Isend(&u[iz][offset][0], NYPROB, MPI_FLOAT, taskid-1, 0, MPI_COMM_WORLD, &left_send_req);
         }
-        
-        // Non-blocking send/receive of right boundary
-        if (right_neighbor != MPI_PROC_NULL) {
-            MPI_Isend(u[iz] + (my_offset + my_rows - 1) * NYPROB, NYPROB, MPI_FLOAT, 
-                      right_neighbor, 0, MPI_COMM_WORLD, &send_request[2]);
-            MPI_Irecv(u[iz] + (my_offset + my_rows) * NYPROB, NYPROB, MPI_FLOAT, 
-                      right_neighbor, 0, MPI_COMM_WORLD, &send_request[3]);
+
+        // Right neighbor communication
+        if (taskid < numtasks-1) {
+            MPI_Irecv(&u[iz][offset+rows][0], NYPROB, MPI_FLOAT, taskid+1, 0, MPI_COMM_WORLD, &right_recv_req);
+            MPI_Isend(&u[iz][offset+rows-1][0], NYPROB, MPI_FLOAT, taskid+1, 0, MPI_COMM_WORLD, &right_send_req);
         }
-        
-        // Local computation
-        update(start, end, NYPROB, u[iz] + my_offset * NYPROB, 
-               u[1-iz] + my_offset * NYPROB);
-        
-        // Wait for boundary exchange to complete
-        if (left_neighbor != MPI_PROC_NULL) {
-            MPI_Waitall(2, &send_request[0], &status[0]);
-        }
-        if (right_neighbor != MPI_PROC_NULL) {
-            MPI_Waitall(2, &send_request[2], &status[2]);
-        }
-        
-        // Swap current and next time step grids
+
+        // Local computation (independent of communication)
+        update(start, end, NYPROB, &u[iz][0][0], &u[1-iz][0][0]);
+
+        // Wait for communication to complete
+        if (taskid > 0)
+            MPI_Wait(&left_recv_req, &status);
+        if (taskid < numtasks-1)
+            MPI_Wait(&right_recv_req, &status);
+
+        // Swap arrays
         iz = 1 - iz;
     }
-    
-    // Gather results back to master
+
+    // Gather final results from all processes
+    MPI_Gather(&u[iz][offset][0], rows*NYPROB, MPI_FLOAT, 
+               &u[0][0][0], rows*NYPROB, MPI_FLOAT, 
+               MASTER, MPI_COMM_WORLD);
+
+    // Write final data on master process
     if (taskid == MASTER) {
-        MPI_Gatherv(
-            u[iz] + my_offset * NYPROB, 
-            my_rows * NYPROB, 
-            MPI_FLOAT,
-            u[0], 
-            sendcounts, 
-            displs, 
-            MPI_FLOAT, 
-            MASTER, 
-            MPI_COMM_WORLD
-        );
-        
-        // Write final data
         printf("Writing final.dat file...\n");
-        prtdat(NXPROB, NYPROB, u[0], "final.dat");
-    } else {
-        // Other processes send their data back
-        MPI_Gatherv(
-            u[iz] + my_offset * NYPROB, 
-            my_rows * NYPROB, 
-            MPI_FLOAT,
-            NULL, 
-            NULL, 
-            NULL, 
-            MPI_FLOAT, 
-            MASTER, 
-            MPI_COMM_WORLD
-        );
+        prtdat(NXPROB, NYPROB, &u[0][0][0], "final.dat");
     }
-    
-    // Free allocated memory
-    free(u[0]);
-    free(u[1]);
-    free(sendcounts);
-    free(displs);
-    
-    // Finalize MPI
+
     MPI_Finalize();
     return 0;
 }
