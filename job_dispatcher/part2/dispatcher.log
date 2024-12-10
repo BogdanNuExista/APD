@@ -1,42 +1,42 @@
 Server started with 3 workers
-[Tue Nov 26 22:23:13 2024] CLI0: RECEIVED - CLI0 PRIMES 100
-[Tue Nov 26 22:23:13 2024] CLI0: DISPATCHED - Dispatched to worker 1
-[Tue Nov 26 22:23:13 2024] CLI1: RECEIVED - CLI1 PRIMEDIVISORS 84
-[Tue Nov 26 22:23:13 2024] CLI1: DISPATCHED - Dispatched to worker 2
-[Tue Nov 26 22:23:13 2024] CLI2: RECEIVED - CLI2 ANAGRAMS hello
-[Tue Nov 26 22:23:13 2024] CLI0 : COMPLETED - Number of primes up to 100: 25
-[Tue Nov 26 22:23:13 2024] CLI2: DISPATCHED - Dispatched to worker 1
-[Tue Nov 26 22:23:13 2024] CLI1 : COMPLETED - Number 84 has 3 prime divisors: 2 3 7 
-[Tue Nov 26 22:23:13 2024] CLI2 : COMPLETED - Anagrams: hello helol hello helol heoll heoll hlelo hleol hlleo hlloe hlole hloel hlleo hlloe hlelo hleol hloel hlole holle holel holle holel hoell hoell ehllo ehlol ehllo ehlol eholl eholl elhlo elhol ellho elloh elolh elohl ellho elloh elhlo elhol elohl elolh eollh eolhl eollh eolhl eohll eohll lehlo lehol lelho leloh leolh leohl lhelo lheol lhleo lhloe lhole lhoel llheo llhoe lleho lleoh lloeh llohe lohle lohel lolhe loleh loelh loehl lelho leloh lehlo lehol leohl leolh lleho lleoh llheo llhoe llohe lloeh lhleo lhloe lhelo lheol lhoel lhole lolhe loleh lohle lohel loehl loelh oellh oelhl oellh oelhl 
-[Tue Nov 26 22:23:15 2024] CLI3: RECEIVED - CLI3 PRIMES 1000
-[Tue Nov 26 22:23:15 2024] CLI3: DISPATCHED - Dispatched to worker 1
-[Tue Nov 26 22:23:15 2024] CLI1: RECEIVED - CLI1 PRIMEDIVISORS 12345
-[Tue Nov 26 22:23:15 2024] CLI1: DISPATCHED - Dispatched to worker 2
-[Tue Nov 26 22:23:15 2024] CLI3 : COMPLETED - Number of primes up to 1000: 168
-[Tue Nov 26 22:23:15 2024] CLI1 : COMPLETED - Number 12345 has 3 prime divisors: 3 5 823 
-[Tue Nov 26 22:23:16 2024] CLI4: RECEIVED - CLI4 ANAGRAMS world
-[Tue Nov 26 22:23:16 2024] CLI4: DISPATCHED - Dispatched to worker 1
-[Tue Nov 26 22:23:16 2024] CLI2: RECEIVED - CLI2 PRIMES 500
-[Tue Nov 26 22:23:16 2024] CLI2: DISPATCHED - Dispatched to worker 2
-[Tue Nov 26 22:23:16 2024] CLI5: RECEIVED - CLI5 PRIMEDIVISORS 9876
-[Tue Nov 26 22:23:16 2024] CLI4 : COMPLETED - Anagrams: world wordl wolrd woldr wodlr wodrl wrold wrodl wrlod wrldo wrdlo wrdol wlrod wlrdo wlord wlodr wldor wldro wdrlo wdrol wdlro wdlor wdolr wdorl owrld owrdl owlrd owldr owdlr owdrl orwld orwdl orlwd orldw ordlw ordwl olrwd olrdw olwrd olwdr oldwr oldrw odrlw odrwl odlrw odlwr odwlr odwrl rowld rowdl rolwd roldw rodlw rodwl rwold rwodl rwlod rwldo rwdlo rwdol rlwod rlwdo rlowd rlodw rldow rldwo rdwlo rdwol rdlwo rdlow rdolw rdowl lorwd lordw lowrd lowdr lodwr lodrw lrowd lrodw lrwod lrwdo lrdwo lrdow lwrod lwrdo lword lwodr lwdor lwdro ldrwo ldrow ldwro ldwor ldowr ldorw dorlw dorwl dolrw dolwr 
-[Tue Nov 26 22:23:16 2024] CLI5: DISPATCHED - Dispatched to worker 1
-[Tue Nov 26 22:23:16 2024] CLI0: RECEIVED - CLI0 ANAGRAMS computer
-[Tue Nov 26 22:23:16 2024] CLI2 : COMPLETED - Number of primes up to 500: 95
-[Tue Nov 26 22:23:16 2024] CLI0: DISPATCHED - Dispatched to worker 2
-[Tue Nov 26 22:23:16 2024] CLI5 : COMPLETED - Number 9876 has 3 prime divisors: 2 3 823 
-[Tue Nov 26 22:23:16 2024] CLI0 : COMPLETED - Anagrams: computer computre compuetr compuert compuret compurte comptuer compture compteur compteru comptreu comptrue competur competru compeutr compeurt comperut compertu comprteu comprtue compretu compreut compruet comprute comupter comuptre comupetr comupert comupret comuprte comutper comutpre comutepr comuterp comutrep comutrpe comuetpr comuetrp comueptr comueprt comuerpt comuertp comurtep comurtpe comuretp comurept comurpet comurpte comtuper comtupre comtuepr comtuerp comturep comturpe comtpuer comtpure comtpeur comtperu comtpreu comtprue comtepur comtepru comteupr comteurp comterup comterpu comtrpeu comtrpue comtrepu comtreup comtruep comtrupe comeutpr comeutrp comeuptr comeuprt comeurpt comeurtp cometupr cometurp cometpur cometpru cometrpu cometrup comeptur comeptru comeputr comepurt comeprut comeprtu comertpu comertup comerptu comerput comerupt comerutp comrutep comrutpe comruetp comruept 
-[Tue Nov 26 22:23:19 2024] CLI3: RECEIVED - CLI3 ANAGRAMS testing
-[Tue Nov 26 22:23:19 2024] CLI3: DISPATCHED - Dispatched to worker 1
-[Tue Nov 26 22:23:19 2024] CLI4: RECEIVED - CLI4 PRIMES 5000
-[Tue Nov 26 22:23:19 2024] CLI4: DISPATCHED - Dispatched to worker 2
-[Tue Nov 26 22:23:19 2024] CLI5: RECEIVED - CLI5 ANAGRAMS simple
-[Tue Nov 26 22:23:19 2024] CLI3 : COMPLETED - Anagrams: testing testign testnig testngi testgni testgin tesitng tesitgn tesintg tesingt tesignt tesigtn tesnitg tesnigt tesntig tesntgi tesngti tesngit tesgint tesgitn tesgnit tesgnti tesgtni tesgtin tetsing tetsign tetsnig tetsngi tetsgni tetsgin tetisng tetisgn tetinsg tetings tetigns tetigsn tetnisg tetnigs tetnsig tetnsgi tetngsi tetngis tetgins tetgisn tetgnis tetgnsi tetgsni tetgsin teitsng teitsgn teitnsg teitngs teitgns teitgsn teistng teistgn teisntg teisngt teisgnt teisgtn teinstg teinsgt teintsg teintgs teingts teingst teigsnt teigstn teignst teignts teigtns teigtsn tentisg tentigs tentsig tentsgi tentgsi tentgis tenitsg tenitgs tenistg tenisgt tenigst tenigts tensitg tensigt tenstig tenstgi tensgti tensgit tengist tengits tengsit tengsti tengtsi tengtis tegtins tegtisn tegtnis tegtnsi 
-[Tue Nov 26 22:23:19 2024] CLI5: DISPATCHED - Dispatched to worker 1
-[Tue Nov 26 22:23:19 2024] CLI1: RECEIVED - CLI1 MATRIXMULT 3 matrix3.txt matrix4.txt
-[Tue Nov 26 22:23:19 2024] CLI1: STARTED - Processing 3x3 matrices
-[Tue Nov 26 22:23:19 2024] CLI1: COMPLETED - Sequential matrix operation completed. Result written to CLI1_result.txt
-[Tue Nov 26 22:23:19 2024] CLI4 : COMPLETED - Number of primes up to 5000: 669
-[Tue Nov 26 22:23:19 2024] CLI5 : COMPLETED - Anagrams: simple simpel simlpe simlep simelp simepl sipmle sipmel siplme siplem sipelm sipeml silpme silpem silmpe silmep silemp silepm sieplm siepml sielpm sielmp siemlp siempl smiple smipel smilpe smilep smielp smiepl smpile smpiel smplie smplei smpeli smpeil smlpie smlpei smlipe smliep smleip smlepi smepli smepil smelpi smelip smeilp smeipl spmile spmiel spmlie spmlei spmeli spmeil spimle spimel spilme spilem spielm spieml splime spliem splmie splmei splemi spleim speilm speiml spelim spelmi spemli spemil slmpie slmpei slmipe slmiep slmeip slmepi slpmie slpmei slpime slpiem slpeim slpemi slipme slipem slimpe slimep sliemp sliepm slepim slepmi sleipm sleimp slemip slempi sempli sempil semlpi semlip 
-[Tue Nov 26 22:23:21 2024] CLI0: RECEIVED - CLI0 MATRIXADD 101 matrix1.txt matrix2.txt
-[Tue Nov 26 22:23:21 2024] CLI0: STARTED - Processing 101x101 matrices
+[Tue Dec 10 11:32:50 2024] CLI0: RECEIVED - CLI0 PRIMES 100
+[Tue Dec 10 11:32:50 2024] CLI0: DISPATCHED - Dispatched to worker 1
+[Tue Dec 10 11:32:50 2024] CLI1: RECEIVED - CLI1 PRIMEDIVISORS 84
+[Tue Dec 10 11:32:50 2024] CLI1: DISPATCHED - Dispatched to worker 2
+[Tue Dec 10 11:32:50 2024] CLI2: RECEIVED - CLI2 ANAGRAMS hello
+[Tue Dec 10 11:32:50 2024] CLI0 : COMPLETED - Number of primes up to 100: 25
+[Tue Dec 10 11:32:50 2024] CLI2: DISPATCHED - Dispatched to worker 1
+[Tue Dec 10 11:32:50 2024] CLI1 : COMPLETED - Number 84 has 3 prime divisors: 2 3 7 
+[Tue Dec 10 11:32:50 2024] CLI2 : COMPLETED - Anagrams: hello helol hello helol heoll heoll hlelo hleol hlleo hlloe hlole hloel hlleo hlloe hlelo hleol hloel hlole holle holel holle holel hoell hoell ehllo ehlol ehllo ehlol eholl eholl elhlo elhol ellho elloh elolh elohl ellho elloh elhlo elhol elohl elolh eollh eolhl eollh eolhl eohll eohll lehlo lehol lelho leloh leolh leohl lhelo lheol lhleo lhloe lhole lhoel llheo llhoe lleho lleoh lloeh llohe lohle lohel lolhe loleh loelh loehl lelho leloh lehlo lehol leohl leolh lleho lleoh llheo llhoe llohe lloeh lhleo lhloe lhelo lheol lhoel lhole lolhe loleh lohle lohel loehl loelh oellh oelhl oellh oelhl 
+[Tue Dec 10 11:32:52 2024] CLI3: RECEIVED - CLI3 PRIMES 1000
+[Tue Dec 10 11:32:52 2024] CLI3: DISPATCHED - Dispatched to worker 1
+[Tue Dec 10 11:32:52 2024] CLI1: RECEIVED - CLI1 PRIMEDIVISORS 12345
+[Tue Dec 10 11:32:52 2024] CLI1: DISPATCHED - Dispatched to worker 2
+[Tue Dec 10 11:32:52 2024] CLI1 : COMPLETED - Number 12345 has 3 prime divisors: 3 5 823 
+[Tue Dec 10 11:32:52 2024] CLI3 : COMPLETED - Number of primes up to 1000: 168
+[Tue Dec 10 11:32:53 2024] CLI4: RECEIVED - CLI4 ANAGRAMS world
+[Tue Dec 10 11:32:53 2024] CLI4: DISPATCHED - Dispatched to worker 1
+[Tue Dec 10 11:32:53 2024] CLI2: RECEIVED - CLI2 PRIMES 500
+[Tue Dec 10 11:32:53 2024] CLI2: DISPATCHED - Dispatched to worker 2
+[Tue Dec 10 11:32:53 2024] CLI5: RECEIVED - CLI5 PRIMEDIVISORS 9876
+[Tue Dec 10 11:32:53 2024] CLI4 : COMPLETED - Anagrams: world wordl wolrd woldr wodlr wodrl wrold wrodl wrlod wrldo wrdlo wrdol wlrod wlrdo wlord wlodr wldor wldro wdrlo wdrol wdlro wdlor wdolr wdorl owrld owrdl owlrd owldr owdlr owdrl orwld orwdl orlwd orldw ordlw ordwl olrwd olrdw olwrd olwdr oldwr oldrw odrlw odrwl odlrw odlwr odwlr odwrl rowld rowdl rolwd roldw rodlw rodwl rwold rwodl rwlod rwldo rwdlo rwdol rlwod rlwdo rlowd rlodw rldow rldwo rdwlo rdwol rdlwo rdlow rdolw rdowl lorwd lordw lowrd lowdr lodwr lodrw lrowd lrodw lrwod lrwdo lrdwo lrdow lwrod lwrdo lword lwodr lwdor lwdro ldrwo ldrow ldwro ldwor ldowr ldorw dorlw dorwl dolrw dolwr 
+[Tue Dec 10 11:32:53 2024] CLI5: DISPATCHED - Dispatched to worker 1
+[Tue Dec 10 11:32:53 2024] CLI0: RECEIVED - CLI0 ANAGRAMS computer
+[Tue Dec 10 11:32:53 2024] CLI2 : COMPLETED - Number of primes up to 500: 95
+[Tue Dec 10 11:32:53 2024] CLI0: DISPATCHED - Dispatched to worker 2
+[Tue Dec 10 11:32:53 2024] CLI5 : COMPLETED - Number 9876 has 3 prime divisors: 2 3 823 
+[Tue Dec 10 11:32:53 2024] CLI0 : COMPLETED - Anagrams: computer computre compuetr compuert compuret compurte comptuer compture compteur compteru comptreu comptrue competur competru compeutr compeurt comperut compertu comprteu comprtue compretu compreut compruet comprute comupter comuptre comupetr comupert comupret comuprte comutper comutpre comutepr comuterp comutrep comutrpe comuetpr comuetrp comueptr comueprt comuerpt comuertp comurtep comurtpe comuretp comurept comurpet comurpte comtuper comtupre comtuepr comtuerp comturep comturpe comtpuer comtpure comtpeur comtperu comtpreu comtprue comtepur comtepru comteupr comteurp comterup comterpu comtrpeu comtrpue comtrepu comtreup comtruep comtrupe comeutpr comeutrp comeuptr comeuprt comeurpt comeurtp cometupr cometurp cometpur cometpru cometrpu cometrup comeptur comeptru comeputr comepurt comeprut comeprtu comertpu comertup comerptu comerput comerupt comerutp comrutep comrutpe comruetp comruept 
+[Tue Dec 10 11:32:56 2024] CLI3: RECEIVED - CLI3 ANAGRAMS testing
+[Tue Dec 10 11:32:56 2024] CLI3: DISPATCHED - Dispatched to worker 1
+[Tue Dec 10 11:32:56 2024] CLI4: RECEIVED - CLI4 PRIMES 5000
+[Tue Dec 10 11:32:56 2024] CLI4: DISPATCHED - Dispatched to worker 2
+[Tue Dec 10 11:32:56 2024] CLI5: RECEIVED - CLI5 ANAGRAMS simple
+[Tue Dec 10 11:32:56 2024] CLI5: DISPATCHED - Dispatched to worker 3
+[Tue Dec 10 11:32:56 2024] CLI1: RECEIVED - CLI1 MATRIXMULT 3 matrix3.txt matrix4.txt
+[Tue Dec 10 11:32:56 2024] CLI1: STARTED - Processing 3x3 matrices
+[Tue Dec 10 11:32:56 2024] CLI1: COMPLETED - Sequential matrix operation completed. Result written to CLI1_result.txt
+[Tue Dec 10 11:32:56 2024] CLI3 : COMPLETED - Anagrams: testing testign testnig testngi testgni testgin tesitng tesitgn tesintg tesingt tesignt tesigtn tesnitg tesnigt tesntig tesntgi tesngti tesngit tesgint tesgitn tesgnit tesgnti tesgtni tesgtin tetsing tetsign tetsnig tetsngi tetsgni tetsgin tetisng tetisgn tetinsg tetings tetigns tetigsn tetnisg tetnigs tetnsig tetnsgi tetngsi tetngis tetgins tetgisn tetgnis tetgnsi tetgsni tetgsin teitsng teitsgn teitnsg teitngs teitgns teitgsn teistng teistgn teisntg teisngt teisgnt teisgtn teinstg teinsgt teintsg teintgs teingts teingst teigsnt teigstn teignst teignts teigtns teigtsn tentisg tentigs tentsig tentsgi tentgsi tentgis tenitsg tenitgs tenistg tenisgt tenigst tenigts tensitg tensigt tenstig tenstgi tensgti tensgit tengist tengits tengsit tengsti tengtsi tengtis tegtins tegtisn tegtnis tegtnsi 
+[Tue Dec 10 11:32:56 2024] CLI5 : COMPLETED - Anagrams: simple simpel simlpe simlep simelp simepl sipmle sipmel siplme siplem sipelm sipeml silpme silpem silmpe silmep silemp silepm sieplm siepml sielpm sielmp siemlp siempl smiple smipel smilpe smilep smielp smiepl smpile smpiel smplie smplei smpeli smpeil smlpie smlpei smlipe smliep smleip smlepi smepli smepil smelpi smelip smeilp smeipl spmile spmiel spmlie spmlei spmeli spmeil spimle spimel spilme spilem spielm spieml splime spliem splmie splmei splemi spleim speilm speiml spelim spelmi spemli spemil slmpie slmpei slmipe slmiep slmeip slmepi slpmie slpmei slpime slpiem slpeim slpemi slipme slipem slimpe slimep sliemp sliepm slepim slepmi sleipm sleimp slemip slempi sempli sempil semlpi semlip 
+[Tue Dec 10 11:32:56 2024] CLI4 : COMPLETED - Number of primes up to 5000: 669
+[Tue Dec 10 11:32:58 2024] CLI0: RECEIVED - CLI0 MATRIXADD 101 matrix1.txt matrix2.txt
+[Tue Dec 10 11:32:58 2024] CLI0: STARTED - Processing 101x101 matrices

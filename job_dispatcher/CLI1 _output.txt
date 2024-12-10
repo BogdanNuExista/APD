@@ -1,2 +1,9 @@
 Number 84 has 3 prime divisors: 2 3 7 
 Number 12345 has 3 prime divisors: 3 5 823 
+Number 84 has 3 prime divisors: 2 3 7 
+Number 12345 has 3 prime divisors: 3 5 823 
+Number 84 has 3 prime divisors: 2 3 7 
+Number 12345 has 3 prime divisors: 3 5 823 
+Number 84 has 3 prime divisors: 2 3 7 
+Number 12345 has 3 prime divisors: 3 5 823 
+Number 84 has 3 prime divisors: 2 3 7 

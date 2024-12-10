@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Clean up any existing executables
-rm -f dispatcher
-
 # Compile the unified program
 echo "Compiling dispatcher program..."
 mpicc -o dispatcher main2.c -lm
@@ -16,6 +13,7 @@ if [ $? -eq 0 ]; then
         # Run the program with 4 processes (1 main server + 3 workers)
         echo "Starting dispatcher with 4 processes..."
         mpirun -np 4 ./dispatcher "$1"
+        rm -f dispatcher
     else
         echo "Usage: ./build.sh <command_file>"
         echo "Please provide a command file as argument"
