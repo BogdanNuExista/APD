@@ -2,3 +2,9 @@ job_dispatcher
 matrix_multiplication
 job_dispatcher2.0
 job_disp3.0
+job_dispatcher/CLI0 _OUTPUT.txt
+job_dispatcher/CLI1 _OUTPUT.txt
+job_dispatcher/CLI2 _OUTPUT.txt
+job_dispatcher/CLI3 _OUTPUT.txt
+job_dispatcher/CLI4 _OUTPUT.txt
+job_dispatcher/CLI5 _OUTPUT.txt

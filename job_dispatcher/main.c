@@ -315,12 +315,12 @@ int main(int argc, char *argv[]) {
     int rank, size;
     
     MPI_Init(&argc, &argv);
-    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank); 
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
     if (rank == 0) { 
         if (argc != 2) { 
-            printf("Usage: %s <command_file>\n", argv[0]);
+            printf("Usage: %s <command_file>\n", argv[0]); 
             MPI_Abort(MPI_COMM_WORLD, 1);
             return 1;
         }
